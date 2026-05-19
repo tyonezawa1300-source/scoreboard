@@ -105,8 +105,22 @@
       gap: 8px;
     }
 
+    .num-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .num-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+      white-space: nowrap;
+      min-width: 90px;
+    }
+
     .num-input {
-      width: 100%;
+      flex: 1;
       height: 52px;
       border: 2px solid #111;
       border-radius: 8px;
@@ -293,8 +307,14 @@
       <div class="pyramid" data-pyramid></div>
       <div class="divider"></div>
       <div class="num-inputs">
-        <input class="num-input" type="number" inputmode="numeric" placeholder="0">
-        <input class="num-input" type="number" inputmode="numeric" placeholder="0">
+        <div class="num-row">
+          <span class="num-label">スパッツの位置</span>
+          <input class="num-input" type="number" inputmode="numeric" placeholder="0">
+        </div>
+        <div class="num-row">
+          <span class="num-label">ファールL位置</span>
+          <input class="num-input" type="number" inputmode="numeric" placeholder="0">
+        </div>
       </div>`;
 
     wrap.appendChild(group);
