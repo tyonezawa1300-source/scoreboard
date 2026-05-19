@@ -171,6 +171,25 @@
 
     .save-btn:active { background: #248a3d; }
 
+    .save-btn { margin-bottom: 8px; }
+
+    .clear-btn {
+      width: 100%;
+      height: 52px;
+      background: #ff3b30;
+      color: #fff;
+      border: none;
+      border-radius: 14px;
+      font-size: 17px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: background 0.1s;
+    }
+
+    .clear-btn:active { background: #c0392b; }
+
     /* ── 印刷用スタイル ── */
     @media print {
       body {
@@ -218,6 +237,7 @@
 <div class="btn-wrap">
   <button class="next-btn" onclick="addGroup()">次へ</button>
   <button class="save-btn" onclick="saveAsPDF()">保存</button>
+  <button class="clear-btn" onclick="clearAll()">クリア</button>
 </div>
 
 <script>
@@ -281,6 +301,14 @@
     buildPyramid(group.querySelector('[data-pyramid]'));
 
     setTimeout(() => group.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
+  }
+
+  function clearAll() {
+    if (!confirm('すべての入力をクリアしますか？')) return;
+    document.getElementById('groups').innerHTML = '';
+    count = 0;
+    addGroup();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function saveAsPDF() {
