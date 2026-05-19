@@ -151,6 +151,62 @@
     }
 
     .next-btn:active { background: #005ecb; }
+
+    .save-btn {
+      width: 100%;
+      height: 52px;
+      background: #34c759;
+      color: #fff;
+      border: none;
+      border-radius: 14px;
+      font-size: 17px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      transition: background 0.1s;
+      margin-bottom: 8px;
+    }
+
+    .save-btn:active { background: #248a3d; }
+
+    /* ── 印刷用スタイル ── */
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+      }
+      header {
+        position: static;
+        background: #fff;
+        border-bottom: 1px solid #ccc;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .btn-wrap { display: none; }
+      #groups { padding: 8px; gap: 16px; }
+      .group {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+      .tcell {
+        border: 2px solid #111 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .tcell.on::after {
+        background: #111 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .num-input {
+        border: 2px solid #111 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
   </style>
 </head>
 <body>
@@ -159,6 +215,7 @@
 <div id="groups"></div>
 
 <div class="btn-wrap">
+  <button class="save-btn" onclick="saveAsPDF()">保存</button>
   <button class="next-btn" onclick="addGroup()">次へ</button>
 </div>
 
@@ -223,6 +280,15 @@
     buildPyramid(group.querySelector('[data-pyramid]'));
 
     setTimeout(() => group.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
+  }
+
+  function saveAsPDF() {
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = String(now.getMonth() + 1).padStart(2, '0');
+    const d = String(now.getDate()).padStart(2, '0');
+    document.title = `${y}${m}${d}-ボウリング`;
+    window.print();
   }
 
   addGroup(); // initial group
