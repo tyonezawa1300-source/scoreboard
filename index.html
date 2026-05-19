@@ -138,6 +138,22 @@
     .num-input::-webkit-inner-spin-button,
     .num-input::-webkit-outer-spin-button { -webkit-appearance: none; }
 
+    /* ── Text input ── */
+    .text-input {
+      width: 100%;
+      min-height: 52px;
+      border: 2px solid #111;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 16px;
+      font-family: inherit;
+      outline: none;
+      background: #fff;
+      color: #111;
+      resize: vertical;
+      margin-top: 8px;
+    }
+
     /* ── Next button ── */
     .btn-wrap {
       position: fixed;
@@ -316,6 +332,7 @@
           <span class="num-label">ファールL位置</span>
           <input class="num-input" type="number" inputmode="numeric" placeholder="0">
         </div>
+        <textarea class="text-input" placeholder="メモを入力..."></textarea>
       </div>`;
 
     wrap.appendChild(group);
