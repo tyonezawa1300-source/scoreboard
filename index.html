@@ -293,10 +293,10 @@
     const totalH    = rowCounts.length * (CELL + VGAP) - VGAP;
     container.style.height = totalH + 'px';
 
-    requestAnimationFrame(() => {
-      const W       = container.offsetWidth;
+    function placeCell() {
+      const W = container.offsetWidth;
+      if (W === 0) { requestAnimationFrame(placeCell); return; }
       const centers = calcCenters(W);
-
       rowCounts.forEach((count, row) => {
         const yTop = row * (CELL + VGAP);
         for (let i = 0; i < count; i++) {
@@ -308,7 +308,8 @@
           container.appendChild(cell);
         }
       });
-    });
+    }
+    requestAnimationFrame(() => requestAnimationFrame(placeCell));
   }
 
   let count = 0;
