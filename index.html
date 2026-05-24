@@ -6,10 +6,15 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="スコアボード">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
   <title>スコアボード</title>
+  <script>
+    (function(){
+      var v = '20260524-1';
+      if (location.search !== '?v=' + v) {
+        location.replace(location.pathname + '?v=' + v);
+      }
+    })();
+  </script>
   <style>
     :root {
       --cell: 46px;
