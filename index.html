@@ -138,13 +138,34 @@
       font-weight: 700;
       font-family: inherit;
       outline: none;
-      background: #fff;
+      background: #f9f9f9;
       color: #111;
-      -moz-appearance: textfield;
+      pointer-events: none;
     }
 
-    .num-input::-webkit-inner-spin-button,
-    .num-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+    /* ── Slider ── */
+    .slider-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: -2px;
+      margin-bottom: 4px;
+    }
+
+    .slider-label {
+      font-size: 11px;
+      color: #999;
+      min-width: 16px;
+      text-align: center;
+    }
+
+    .slider {
+      flex: 1;
+      height: 4px;
+      accent-color: #007aff;
+      transform: scaleX(-1);
+      cursor: pointer;
+    }
 
     /* ── Text input ── */
     .text-input {
@@ -303,17 +324,36 @@
       <div class="num-inputs">
         <div class="num-row">
           <span class="num-label">スパッツの位置</span>
-          <input class="num-input" type="number" inputmode="numeric" placeholder="0">
+          <input class="num-input" type="text" readonly value="0">
+        </div>
+        <div class="slider-row">
+          <span class="slider-label">50</span>
+          <input type="range" class="slider" min="0" max="50" value="0">
+          <span class="slider-label">0</span>
         </div>
         <div class="num-row">
           <span class="num-label">ファールL位置</span>
-          <input class="num-input" type="number" inputmode="numeric" placeholder="0">
+          <input class="num-input" type="text" readonly value="0">
+        </div>
+        <div class="slider-row">
+          <span class="slider-label">50</span>
+          <input type="range" class="slider" min="0" max="50" value="0">
+          <span class="slider-label">0</span>
         </div>
         <textarea class="text-input" placeholder="メモを入力..."></textarea>
       </div>`;
 
     wrap.appendChild(group);
     buildPyramid(group.querySelector('[data-pyramid]'));
+
+    // スライダーと数値入力を連動
+    const sliders   = group.querySelectorAll('.slider');
+    const numInputs = group.querySelectorAll('.num-input');
+    sliders.forEach((slider, i) => {
+      slider.addEventListener('input', () => {
+        numInputs[i].value = slider.value;
+      });
+    });
 
     setTimeout(() => group.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
   }
